@@ -1,31 +1,6 @@
 #!/bin/bash
 
-#Reference/bibliography builder by Jeppe Trøst Nielsen
-
-# Version 1.5
-# Allows two options:
-# -s Silent mode, no output to terminal
-# -f Specify format, choose one of the predetermined formats
-# At present, bib and tex are supported (manual files of course are just taken as-is)
-
-# Version 1.4
-# Now allows manual override
-# Save a file with the same name, but .txt-format
-# Contents of this file will be put as entry
-# Defeats the purpose of the script, but might unfortunately be necessary
-
-# Version 1.3
-# Changed to get bibtex info, not latex info.
-# Might do a version where both are possible
-
-# Version 1.2
-# Fixed line breaks not going through bash variables smoothly
-# Fixed comments to be with %, not //
-
-# Version 1.1
-# Fixed checking for only lower case doi.
-# Now checks if doi is a number.
-# Fixed spaces in file names causing problems.
+#Reference/bibliography builder by Jeppe Trost Nielsen
 
 #First converts pdfs to txt using pdftotxt files and searches for 
 #"doi:" and find inSPIRE match or if that fails, searches for
@@ -35,6 +10,13 @@
 #Both pdftotxt and curl takes some time, unfortunately. It is still
 #way quicker than doing it yourself though.
 
+#Options are:
+# -s Silent mode, no output to terminal
+# -f Specify format, choose one of the predetermined formats
+# 	At present, bib and tex are supported (manual files of course are just taken as-is)
+
+#For old/unreadable pdfs, use manual override:
+#Save a {filename}.txt file next to the {filename}.pdf
 
 #Test if pdftotext exists
 command -v pdftotext >/dev/null 2>&1 || { echo >&2 "Requires pdftotext which is not installed.  Aborting."; exit 1; }
