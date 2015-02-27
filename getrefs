@@ -193,9 +193,10 @@ if [ $silent == false ];then
 	echo "Logfile saved in $logfile"
 fi
 
-if [ -n "$1" ]; then cd - > /dev/null ; fi
 
 if [ ! -z "$(awk '/Failed/' $logfile)" ]
 then
 	echo "Be sure to check $logfile for failed matches marked by (*)"
 fi
+
+if [ -n "$1" ]; then cd - > /dev/null ; fi
