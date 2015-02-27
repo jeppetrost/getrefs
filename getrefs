@@ -28,10 +28,10 @@ while getopts ":f:s" opt; do
 	case $opt in
 	f)
 		format=$OPTARG		
-		;;
+		shift 2;;
 	s)
 		silent=true
-		;;
+		shift;;
 	\?)
 		echo "Invalid option: -$OPTARG" >&2
 		exit 1
@@ -52,7 +52,6 @@ then
 	exit 1
 fi
 
-
 case $format in
 	bib)	
 		bibfile=bibliography.bib
@@ -66,6 +65,15 @@ case $format in
 		echo "This is not supposed to happen"
 		;;
 esac
+
+if [ -n "$1" ]; then 
+	if [ -d $1 ]; then
+		cd $1;
+	else
+		echo "Error: directory $1 not found" ;
+		exit 1 ;
+	fi
+fi
 
 logfile=biblog.txt
 txtfile=jibberishfilename.txt
@@ -184,6 +192,8 @@ if [ $silent == false ];then
 	echo "Bibliography saved in $bibfile"
 	echo "Logfile saved in $logfile"
 fi
+
+if [ -n "$1" ]; then cd - > /dev/null ; fi
 
 if [ ! -z "$(awk '/Failed/' $logfile)" ]
 then
