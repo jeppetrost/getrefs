@@ -37,11 +37,20 @@ while getopts ":f:s" opt; do
 		exit 1
 		;;
 	:)
-		echo "usage [-s] [-f export format]"
+		echo "usage [-s] [-f export format] [directory]"
 		exit 1
 		;;
 	esac
 done
+
+if [ -n "$1" ]; then 
+	if [ -d $1 ]; then
+		cd $1;
+	else
+		echo "Error: directory $1 not found" ;
+		exit 1 ;
+	fi
+fi
 
 allowedformats=("bib" "tex")
 if [ $(echo ${allowedformats[@]} | grep -o $format | wc -w) == 0 ];
@@ -55,25 +64,17 @@ fi
 case $format in
 	bib)	
 		bibfile=bibliography.bib
-		echo "%Automatically generated .tex bibliography" > $bibfile
+		echo "%Automatically generated .bib	bibliography" > $bibfile
 		;;
 	tex)
 		bibfile=bibliography.tex
-		echo "%Automatically generated .bib bibliography" > $bibfile
+		echo "%Automatically generated .tex bibliography" > $bibfile
 		;;
 	*)
 		echo "This is not supposed to happen"
 		;;
 esac
 
-if [ -n "$1" ]; then 
-	if [ -d $1 ]; then
-		cd $1;
-	else
-		echo "Error: directory $1 not found" ;
-		exit 1 ;
-	fi
-fi
 
 logfile=biblog.txt
 txtfile=jibberishfilename.txt
