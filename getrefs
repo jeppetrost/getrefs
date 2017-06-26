@@ -52,6 +52,11 @@ if [ -n "$1" ]; then
 	fi
 fi
 
+if [ ! -f *.pdf ]; then
+	echo "No PDF files in the directory, exiting." ;
+	exit 1 ;
+fi
+
 allowedformats=("bib" "tex")
 if [ $(echo ${allowedformats[@]} | grep -o $format | wc -w) == 0 ];
 then

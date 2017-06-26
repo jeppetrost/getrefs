@@ -1,4 +1,7 @@
 # getrefs
-Helps construct bibliographies from downloaded pdfs
+Helper tool to construct bibliographies from downloaded pdfs.
 
-curls the appropriate references off inSpire.
+The present version curls the appropriate references off inSpire, since it was made for High Energy Physics realated papers. 
+
+### Roadmap
+It could be nice to have more, different databases of scientific papers.
