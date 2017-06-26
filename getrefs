@@ -32,12 +32,16 @@ while getopts ":f:s" opt; do
 	s)
 		silent=true
 		shift;;
+	d)
+		database=$OPTARG
+		echo "This feature is not actually implemented"
+		shift 2;;
 	\?)
 		echo "Invalid option: -$OPTARG" >&2
 		exit 1
 		;;
 	:)
-		echo "usage [-s] [-f export format] [directory]"
+		echo "usage [-s] [-f export format] [-d database] [directory]"
 		exit 1
 		;;
 	esac
